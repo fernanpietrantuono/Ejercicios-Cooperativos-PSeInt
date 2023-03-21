@@ -1,0 +1,171 @@
+Algoritmo Edificacion
+	Definir opc Como Entero
+	Escribir "1 - Calcular muro de ladrillo"
+	Escribir "2 - Calcular viga de hormigón"
+	Escribir "3 - Calcular columnas de hormigón"
+	Escribir "4 - Calcular contrapisos"
+	Escribir "5 - Calcular techo"
+	Escribir "6 - Calcular pisos"
+	Escribir "7 - Calcular pintura"
+	Escribir "8 - Calcular iluminación"
+	Escribir "9 - Salir"
+	Repetir
+		Repetir
+			Escribir "Ingrese una opcion válida"
+			Leer opc
+		Mientras Que opc>9 | opc<=0
+		menu(opc)
+	Mientras Que opc<>9
+FinAlgoritmo
+SubAlgoritmo menu(opc)
+	Segun opc Hacer
+		1: calcularMuro()
+		2: calcularViga()
+		3: calcularColumna()
+		4: calcularContrapisos()
+		5: calcularTecho()
+		6: calcularPisos()
+		7: calcularPintura()
+		8: calcularIluminacion()
+		9: Escribir "Espero hayas disfrutado el Edificio 1.0"
+	FinSegun
+FinSubAlgoritmo
+
+//Volumen y Superficie
+Funcion volumen<-calcularVolumen(l,b,a)
+	Definir volumen Como Real
+	volumen<-l*b*a
+FinFuncion
+
+Funcion retorno<-calcularSuperficie(largo, ancho)
+	Definir retorno Como Real
+	retorno<-largo*ancho
+FinFuncion
+
+//1 - MURO DE LADRILLO
+SubAlgoritmo calcularMuro()
+	Definir espesor, alto, largo, superficie Como Entero
+	Repetir
+		Escribir "Ingrese el espesor del muro"
+		Escribir "1 - Espesor de 20 cm"
+		Escribir "2 - Espesor de 30 cm"
+		Leer espesor
+	Mientras Que espesor<>1 & espesor<>2
+	Escribir "Ingrese el largo del muro"
+	Leer largo
+	Escribir "ingrese el alto del muro"
+	Leer alto
+	superficie<-calcularSuperficie(alto,largo)
+	Si espesor=1 Entonces
+		Escribir "Materiales necesarios para un muro de " superficie " m²"
+		Escribir "Cemento: " superficie*15.2 " kg"
+		Escribir "Arena: " superficie * 0.115 " m³"
+		Escribir "Cantidad de ladrillos: " superficie*120
+	SiNo
+		Escribir "Materiales necesarios para un muro de " superficie " m²"
+		Escribir "Cemento: " superficie*10.9 " kg"
+		Escribir "Arena: " superficie * 0.09 " m³"
+		Escribir "Cantidad de ladrillos: " superficie*90
+	FinSi
+FinSubAlgoritmo
+
+//2 - VIGA DE HORMIGON
+SubAlgoritmo calcularViga()
+	Definir largo Como Real
+	Repetir
+		Escribir "Ingrese el largo de la viga en metros lineales"
+		Leer largo
+	Hasta Que largo<=0
+	Escribir "Materiales necesarios para una viga de " largoViga "m"
+	Escribir "Cemento: " largo*9 " kg"
+	Escribir "Arena: " largo*0.02 " m³"
+	Escribir "Piedra: " largo*0.02 " m²"
+	Escribir "Hierro del 8: " largo*4 " m"
+	Escribir "Hierro del 4: " largo*3 " m"
+FinSubAlgoritmo
+
+//3 - COLUMNAS DE HORMIGON
+SubAlgoritmo calcularColumna()
+	Definir largo Como Real
+	Repetir
+		Escribir "Ingrese el largo de la columna en metros lineales"
+		Leer largo
+	Hasta Que largo<=0	
+	Escribir "Materiales necesarios para una columna de " largoColumna " m"
+	Escribir "Cemento: " largo*7.5 " kg"
+	Escribir "Arena: " largo*0.016 " m³"
+	Escribir "Piedra: " largo*0.016 " m²"
+	Escribir "Hierro del 10: " largo*6 " m"
+	Escribir "Hierro del 4: " largo*3 " m"
+FinSubAlgoritmo
+
+//4 - CONTRAPISOS
+SubAlgoritmo calcularContrapisos()
+	Definir espesor, ancho, largo, volumen Como Real
+	Repetir
+		Escribir "Ingrese el espesor en metros"
+		Leer espesor
+	Hasta Que espesor<=0
+	Repetir
+		Escribir "Ingrese el ancho en metros"
+		Leer ancho
+	Hasta Que ancho<=0
+	Repetir
+		Escribir "Ingrese el largo en metros"
+		Leer largo
+	Hasta Que largo<=0
+	volumen<-calcularVolumen(espesor, ancho, largo)
+	Escribir "Materiales necesarios para cubrir el contrapiso de " volumen " m³"
+	Escribir "Cemento: " volumen*105 " kg"
+	Escribir "Arena: " volumen*0.45 " m³"
+	Escribir "Piedra: " volumen*0.9 " m³"
+FinSubAlgoritmo
+
+//5 - TECHO
+SubAlgoritmo calcularTecho()
+	Definir espesor, ancho, largo, volumen Como Real
+	Escribir "Ingrese el espesor"
+	Leer espesor
+	Escribir "Ingrese el ancho"
+	Leer ancho
+	Escribir "Ingrese el largo"
+	Leer largo
+	volumen=calcularVolumen(espesor, ancho, largo)
+	Escribir "Materiales necesarios para cubrir el techo de " volumen " m²"
+	Escribir "Cemento: " volumen*33 " kg"
+	Escribir "Arena: " volumen*0.072 " m³"
+	Escribir "Piedra: " volumen*0.072 " m³"
+	Escribir "Hierro del 8: " volumen*7 " m"
+	Escribir "Hierro del 6: " volumen*4 " m"
+FinSubAlgoritmo
+
+//6 - PISOS
+SubAlgoritmo calcularPisos()
+	Definir largo, ancho, supCubierta Como Real
+	Repetir
+		Escribir "Ingrese el largo y el ancho del paño"
+		Leer largo, ancho
+	Hasta Que largo>0 & ancho>0
+	supCubierta<-calcularSuperficie(largo,ancho)+(calcularSuperficie(largo,ancho)*0.10)
+	Escribir "Usted necesitará " supCubierta " m² para cubrir el piso"
+FinSubAlgoritmo
+
+//7 - PINTURA
+SubAlgoritmo calcularPintura()
+	Definir supPintura1, supPintura2, supTotal Como Real
+	supPintura1<-superficie*6
+	supPintura2<-superficie*6
+	supTotal<-(supPintura1*2)+(supPintura2*2)
+	Escribir "Usted necesitará " supTotal " m² para pintar las paredes de la habitación"
+FinSubAlgoritmo
+
+//8 - ILUMINACIÓN
+SubAlgoritmo calcularIluminacion()
+	Definir alto, ancho, superficie Como Real
+	Escribir "Ingrese el alto"
+	Leer alto
+	Escribir "Ingrese el ancho"
+	Leer ancho
+	superficie<-calcularSuperficie(alto,ancho)
+	Escribir "La iluminación minima de superficie es de ", superficie * 0.20, " m²"
+FinSubAlgoritmo
